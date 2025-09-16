@@ -1,24 +1,24 @@
 import Foundation
 import Network
 
-public enum APIEndpoint: EndPointType {
+enum APODEndpoint: EndPointType {
     case apodByDate(date: String)
     case apodRandom(count: Int)
     case apodByRange(startDate: String, endDate: String, thumbs: Bool)
     
-    public var path: String {
+    var path: String {
         return "/planetary/apod"
     }
     
-    public var httpMethod: HTTPMethod {
+    var httpMethod: HTTPMethod {
         return .get
     }
     
-    public var headers: HTTPHeaders? {
+    var headers: HTTPHeaders? {
         return ["Content-Type": "application/json"]
     }
     
-    public var queryParameters: [String: Any] {
+    var queryParameters: [String: Any] {
         var params: [String: Any] = [:]
         
         switch self {
@@ -37,11 +37,11 @@ public enum APIEndpoint: EndPointType {
         return params
     }
     
-    public var body: Data? {
+    var body: Data? {
         return nil
     }
     
-    public var requiresAuth: Bool {
+    var requiresAuth: Bool {
         return true
     }
 }

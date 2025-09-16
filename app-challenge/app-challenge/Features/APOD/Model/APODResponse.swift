@@ -1,14 +1,14 @@
 import Foundation
 
-public struct APODResponse: Codable, Sendable {
-    public let date: String
-    public let explanation: String
-    public let hdurl: String?
-    public let mediaType: String
-    public let serviceVersion: String
-    public let title: String
-    public let url: String
-    public let thumbnailUrl: String?
+struct APODResponse: Codable, Sendable {
+    let date: String
+    let explanation: String
+    let hdurl: String?
+    let mediaType: String
+    let serviceVersion: String
+    let title: String
+    let url: String
+    let thumbnailUrl: String?
     
     private enum CodingKeys: String, CodingKey {
         case date
