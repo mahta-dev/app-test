@@ -43,6 +43,6 @@ struct APODRandomButton<ViewModel: APODViewModelProtocol>: View where ViewModel:
         Button("Random") {
             viewModel.handle(.loadRandomAPOD)
         }
-        .disabled(viewModel.isLoading)
+        .disabled(viewModel.state.isLoading)
     }
 }

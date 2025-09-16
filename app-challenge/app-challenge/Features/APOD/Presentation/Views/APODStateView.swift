@@ -4,11 +4,16 @@ struct APODStateView<ViewModel: APODViewModelProtocol>: View where ViewModel: Ob
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
-        if viewModel.isLoading {
+        switch viewModel.state {
+        case .idle:
+            APODWelcomeView {
+                viewModel.handle(.loadAPOD(date: "2024-01-01"))
+            }
+        case .loading:
             APODLoadingView()
-        } else if let apod = viewModel.apod {
+        case .success(let apod):
             APODSuccessView(apod: apod)
-        } else if let error = viewModel.error {
+        case .error(let error):
             APODErrorView(
                 error: error,
                 onRetry: {
@@ -18,10 +23,6 @@ struct APODStateView<ViewModel: APODViewModelProtocol>: View where ViewModel: Ob
                     viewModel.handle(.clearError)
                 }
             )
-        } else {
-            APODWelcomeView {
-                viewModel.handle(.loadAPOD(date: "2024-01-01"))
-            }
         }
     }
 }

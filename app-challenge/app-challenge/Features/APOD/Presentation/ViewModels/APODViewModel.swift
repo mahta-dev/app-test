@@ -4,15 +4,11 @@ import Network
 
 final class APODViewModel: APODViewModelProtocol {
     
-    @Published private(set) var apod: APODEntity?
-    @Published private(set) var isLoading = false
-    @Published private(set) var error: APODErrorModel?
+    @Published private(set) var state: APODViewState = .idle
     
     private let useCase: APODUseCaseProtocol
     
     private var currentTask: Task<Void, Never>?
-    
-    var isEmpty: Bool { apod == nil }
     
     init(useCase: APODUseCaseProtocol) {
         self.useCase = useCase
@@ -54,7 +50,7 @@ final class APODViewModel: APODViewModelProtocol {
     }
     
     private func clearError() {
-        error = nil
+        state = .idle
     }
     
     private func executeAsyncOperation<T>(operation: @escaping () async throws -> T) {
@@ -64,8 +60,7 @@ final class APODViewModel: APODViewModelProtocol {
             guard let self = self else { return }
             
             await MainActor.run {
-                self.isLoading = true
-                self.error = nil
+                self.state = .loading
             }
             
             do {
@@ -74,20 +69,17 @@ final class APODViewModel: APODViewModelProtocol {
                 
                 await MainActor.run {
                     if let apodResult = result as? APODEntity {
-                        self.apod = apodResult
+                        self.state = .success(apodResult)
                     }
-                    self.isLoading = false
                 }
                 
             } catch is CancellationError {
                 await MainActor.run {
-                    self.isLoading = false
+                    self.state = .idle
                 }
             } catch {
                 await MainActor.run {
-                    self.apod = nil
-                    self.error = APODErrorModel(from: error)
-                    self.isLoading = false
+                    self.state = .error(APODErrorModel(from: error))
                 }
             }
         }

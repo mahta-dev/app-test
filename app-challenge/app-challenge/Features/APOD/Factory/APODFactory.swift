@@ -8,8 +8,7 @@ protocol APODFactoryProtocol {
 final class APODFactory: APODFactoryProtocol {
     func createAPODView() -> APODContentView<APODViewModel> {
         let requestManager = RequestManager()
-        let service = APODService(requestManager: requestManager)
-        let dataSource = APODRemoteDataSource(service: service)
+        let dataSource = APODRemoteDataSource(requestManager: requestManager)
         let repository = APODRepository(dataSource: dataSource)
         let useCase = APODUseCase(repository: repository)
         let viewModel = APODViewModel(useCase: useCase)
