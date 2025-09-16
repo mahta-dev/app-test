@@ -9,7 +9,7 @@ enum APODAction {
 }
 
 protocol APODViewModelProtocol: ObservableObject {
-    var apod: APODResponse? { get }
+    var apod: APODEntity? { get }
     var isLoading: Bool { get }
     var error: APODErrorModel? { get }
     var isEmpty: Bool { get }

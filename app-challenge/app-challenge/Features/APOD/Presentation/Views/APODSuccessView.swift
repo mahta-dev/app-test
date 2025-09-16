@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct APODSuccessView: View {
-    let apod: APODResponse
+    let apod: APODEntity
     
     var body: some View {
         ScrollView {
@@ -17,7 +17,7 @@ struct APODSuccessView: View {
 }
 
 struct APODHeaderView: View {
-    let apod: APODResponse
+    let apod: APODEntity
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -34,7 +34,7 @@ struct APODHeaderView: View {
 }
 
 struct APODImageView: View {
-    let apod: APODResponse
+    let apod: APODEntity
     
     var body: some View {
         AsyncImage(url: URL(string: apod.url)) { image in
@@ -54,7 +54,7 @@ struct APODImageView: View {
 }
 
 struct APODDescriptionView: View {
-    let apod: APODResponse
+    let apod: APODEntity
     
     var body: some View {
         Text(apod.explanation)
@@ -64,7 +64,7 @@ struct APODDescriptionView: View {
 }
 
 struct APODMetadataView: View {
-    let apod: APODResponse
+    let apod: APODEntity
     
     var body: some View {
         HStack {

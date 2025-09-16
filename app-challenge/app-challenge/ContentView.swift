@@ -6,24 +6,18 @@
 //
 
 import SwiftUI
-import Network
 
 struct ContentView: View {
-    @StateObject private var viewModel = APODViewModel(
-        apodService: APODService(
-            requestManager: RequestManager()
-        )
-    )
     @State private var showNetworkDemo = false
+    @State private var factoryManager: APODFactoryManagerProtocol = APODFactoryManager()
     
     var body: some View {
-        APODContentView(viewModel: viewModel)
+        factoryManager.createAPODView()
             .sheet(isPresented: $showNetworkDemo) {
                 NetworkModuleView()
             }
     }
 }
-
 
 struct NetworkModuleView: View {
     var body: some View {

@@ -4,18 +4,18 @@ import Network
 
 final class APODViewModel: APODViewModelProtocol {
     
-    @Published private(set) var apod: APODResponse?
+    @Published private(set) var apod: APODEntity?
     @Published private(set) var isLoading = false
     @Published private(set) var error: APODErrorModel?
     
-    private let apodService: APODServiceProtocol
+    private let useCase: APODUseCaseProtocol
     
     private var currentTask: Task<Void, Never>?
     
     var isEmpty: Bool { apod == nil }
     
-    init(apodService: APODServiceProtocol) {
-        self.apodService = apodService
+    init(useCase: APODUseCaseProtocol) {
+        self.useCase = useCase
     }
     
     func handle(_ action: APODAction) {
@@ -34,15 +34,15 @@ final class APODViewModel: APODViewModelProtocol {
     private func loadAPOD(date: String) {
         executeAsyncOperation { [weak self] in
             guard let self = self else { throw RequestError.networkError("Service unavailable") }
-            return try await self.apodService.fetchAPOD(date: date)
+            return try await self.useCase.fetchAPOD(for: date)
         }
     }
     
     private func loadRandomAPOD() {
         executeAsyncOperation { [weak self] in
             guard let self = self else { throw RequestError.networkError("Service unavailable") }
-            let responses = try await self.apodService.fetchRandomAPOD(count: 1)
-            guard let first = responses.first else {
+            let entities = try await self.useCase.fetchRandomAPOD(count: 1)
+            guard let first = entities.first else {
                 throw RequestError.invalidResponse
             }
             return first
@@ -73,7 +73,7 @@ final class APODViewModel: APODViewModelProtocol {
                 try Task.checkCancellation()
                 
                 await MainActor.run {
-                    if let apodResult = result as? APODResponse {
+                    if let apodResult = result as? APODEntity {
                         self.apod = apodResult
                     }
                     self.isLoading = false
