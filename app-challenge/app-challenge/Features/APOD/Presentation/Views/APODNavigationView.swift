@@ -31,7 +31,6 @@ struct APODToolbarView<ViewModel: APODViewModelProtocol>: ToolbarContent where V
 struct APODFeaturesButton: View {
     var body: some View {
         Button("Features") {
-            // TODO: Implement features navigation
         }
     }
 }

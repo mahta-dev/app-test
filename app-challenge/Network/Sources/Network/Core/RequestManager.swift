@@ -1,24 +1,5 @@
 import Foundation
 
-extension TimeInterval {
-    static let nanosecondsPerSecond: TimeInterval = 1_000_000_000
-}
-
-extension Int {
-    static let serverErrorThreshold = 500
-    public static let defaultRetryCount = 3
-}
-
-public protocol URLSessionProtocol: Sendable {
-    func data(for request: URLRequest) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: URLSessionProtocol {}
-
-public protocol RequestManagerProtocol: Sendable {
-    func request<T: Decodable>(endpoint: EndPointType) async throws -> T
-}
-
 public struct RequestManager: RequestManagerProtocol, Sendable {
     
     private let baseURL: String

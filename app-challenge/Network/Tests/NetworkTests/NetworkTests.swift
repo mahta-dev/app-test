@@ -2,10 +2,17 @@ import XCTest
 @testable import Network
 
 final class NetworkTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(1 + 1, 2)
+    
+    func testNetworkModuleCompiles() throws {
+        let requestManager = RequestManager()
+        XCTAssertNotNil(requestManager)
+    }
+    
+    func testNetworkModulePublicAPI() throws {
+        let requestManager: RequestManagerProtocol = RequestManager()
+        let session: URLSessionProtocol = URLSession.shared
+        
+        XCTAssertNotNil(requestManager)
+        XCTAssertNotNil(session)
     }
 }

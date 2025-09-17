@@ -8,5 +8,4 @@ public protocol EndPointType: Sendable {
     var headers: HTTPHeaders? { get }
     var queryParameters: [String: Any] { get }
     var body: Data? { get }
-    var requiresAuth: Bool { get }
 }

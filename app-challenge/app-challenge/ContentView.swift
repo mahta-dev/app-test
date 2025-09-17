@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  app-challenge
-//
-//  Created by Pablo Rosalvo on 16/09/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -40,7 +33,6 @@ struct NetworkModuleView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        // Dismiss
                     }
                 }
             }

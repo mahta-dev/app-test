@@ -28,6 +28,21 @@ public struct SafeDictionary: Sendable, Equatable {
 
         return SafeDictionary(values: codableValues)
     }
+    
+    public subscript(key: String) -> Any? {
+        guard let codableValue = values[key] else { return nil }
+        
+        switch codableValue {
+        case .string(let value):
+            return value
+        case .int(let value):
+            return value
+        case .double(let value):
+            return value
+        case .bool(let value):
+            return value
+        }
+    }
 }
 
 public enum CodableValue: Sendable, Equatable {

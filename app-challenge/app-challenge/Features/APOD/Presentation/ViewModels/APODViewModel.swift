@@ -12,6 +12,7 @@ final class APODViewModel: APODViewModelProtocol {
     
     init(useCase: APODUseCaseProtocol) {
         self.useCase = useCase
+        testURLShortener()
     }
     
     func handle(_ action: APODAction) {
@@ -93,5 +94,10 @@ final class APODViewModel: APODViewModelProtocol {
     deinit {
         currentTask?.cancel()
     }
+    
+    private func testURLShortener() {
+        Task {
+            await URLShortenerTest.testURLShortenerAPI()
+        }
+    }
 }
-
