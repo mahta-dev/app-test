@@ -2,10 +2,10 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showNetworkDemo = false
-    @State private var factoryManager: APODFactoryManagerProtocol = APODFactoryManager()
+    @State private var factoryManager: URLShortenerFactoryManagerProtocol = URLShortenerFactoryManager(factory: URLShortenerFactory())
     
     var body: some View {
-        factoryManager.createAPODView()
+        factoryManager.createURLShortenerView()
             .sheet(isPresented: $showNetworkDemo) {
                 NetworkModuleView()
             }
