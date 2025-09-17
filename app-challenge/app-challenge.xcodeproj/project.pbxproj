@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D167F582E7AFA8300ED93E7 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 6D167F572E7AFA8300ED93E7 /* Network */; };
 		6D895F962E78FF6800D5F339 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 6D895F952E78FF6800D5F339 /* Network */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D895F962E78FF6800D5F339 /* Network in Frameworks */,
+				6D167F582E7AFA8300ED93E7 /* Network in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +130,7 @@
 			name = "app-challenge";
 			packageProductDependencies = (
 				6D895F952E78FF6800D5F339 /* Network */,
+				6D167F572E7AFA8300ED93E7 /* Network */,
 			);
 			productName = "app-challenge";
 			productReference = 6DA6A42F2E778B6800A2FD18 /* app-challenge.app */;
@@ -211,6 +214,9 @@
 			);
 			mainGroup = 6DA6A4262E778B6700A2FD18;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6D167F562E7AFA8300ED93E7 /* XCLocalSwiftPackageReference "Network" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6DA6A4302E778B6800A2FD18 /* Products */;
 			projectDirPath = "";
@@ -600,7 +606,18 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		6D167F562E7AFA8300ED93E7 /* XCLocalSwiftPackageReference "Network" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Network;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		6D167F572E7AFA8300ED93E7 /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Network;
+		};
 		6D895F952E78FF6800D5F339 /* Network */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Network;

@@ -1,6 +1,6 @@
 import Foundation
 
-enum URLShortenerViewState {
+enum URLShortenerViewState: Equatable {
     case idle
     case loading
     case success([ShortenedURLEntity])
@@ -44,5 +44,11 @@ struct URLShortenerErrorModel {
         self.title = title
         self.message = message
         self.retryAction = retryAction
+    }
+}
+
+extension URLShortenerErrorModel: Equatable {
+    static func == (lhs: URLShortenerErrorModel, rhs: URLShortenerErrorModel) -> Bool {
+        return lhs.title == rhs.title && lhs.message == rhs.message
     }
 }

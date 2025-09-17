@@ -64,6 +64,17 @@ extension String {
         return self.allSatisfy { $0.isLetter || $0.isNumber }
     }
     
+    var isValidAlias: Bool {
+        let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmedString.isEmpty {
+            return false
+        }
+        
+        let allowedCharacters = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "-_"))
+        return trimmedString.unicodeScalars.allSatisfy { allowedCharacters.contains($0) }
+    }
+    
     func normalizedURL() -> String {
         let trimmedString = self.trimmingCharacters(in: .whitespacesAndNewlines)
         

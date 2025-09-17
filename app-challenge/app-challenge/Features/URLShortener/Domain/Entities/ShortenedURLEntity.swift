@@ -1,6 +1,6 @@
 import Foundation
 
-struct ShortenedURLEntity {
+struct ShortenedURLEntity: Equatable, Hashable {
     let id: String
     let originalURL: String
     let shortURL: String

@@ -1,7 +1,7 @@
 import Foundation
 
-public struct ShortenResponse: Decodable {
-    public struct Links: Decodable {
+public struct ShortenResponse: Codable {
+    public struct Links: Codable {
         public let self_: URL
         public let short: URL
         private enum CodingKeys: String, CodingKey { case self_ = "self", short }
